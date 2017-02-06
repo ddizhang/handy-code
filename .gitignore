@@ -101,8 +101,8 @@ ENV/
 *.doc
 
 #pictures
-*.jpg
-*.png
+#*.jpg
+#*.png
 
 
 

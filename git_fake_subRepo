@@ -1,0 +1,12 @@
+#add a subdirectory of a git repo into another git repo, 
+#so that you can have different version control on both parent repo and sub repo. 
+#And you can commute with others on the sub repo without exposing your parent repo
+
+git clone <parentRepoPath> parentRepo
+cd parentRepo
+
+git clone <subRepoPath> subRepo  #a subRepo is build as a in parentRepo/subRepo
+
+git add subRepo/  #The slash is vital! This way, the parentRepo git driver will add everything in subRepo disgard that it's a git repo itself. Otherwise, subRepo will be considered as a submoduel.
+
+

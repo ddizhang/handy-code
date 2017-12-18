@@ -1,0 +1,64 @@
+gcloud components list  #see all components on gcloud 
+gcloud components install kubectl  #install kubectl
+
+
+gcloud config configuration list  #see all configurations
+
+gcloud config configurations create test #create new configuration named test
+
+gcloud config list  #details of selected configuration
+gcloud config set account account@gmail.com
+gcloud auth login #login the configuration
+gcloud config set project project-id  #projectID is the real project ID on cloud
+gcloud config set compute/region us-west-1
+gcloud config set compute/zone us-west1-a
+gcloud config list
+
+gcloud container clusters list  #see all clusters
+gcloud container clusters delete pricingmanager
+
+gcloud auth application-default login  #log in for all apps in gcloud, ie.kubectl? 
+
+
+#———————————————————
+kubectl get service mongoldb
+
+kubectl config view
+
+kubectl config get-clusters
+kubectl config set-cluster gke-cluster-test-153901-us-west1-a-pricingmanager --server=https://104.199.112.142
+#(The connection to the server localhost:8080 was refused - did you specify the right host or port?)
+
+gcloud container clusters get-credentials pricingmanager
+#(solves Unable to connect to the server: x509: certificate signed by unknown authority)
+#This is because the keys to your old cluster is cached. I'm not sure why they are not updated by the gcloud init command (that's what one would intuitively expect, or at least some kinder error message from kubectl)
+
+
+
+
+
+# Use gcloud to push the image to the Google Container Engine Registry:
+
+# Add google tag to the image first
+docker tag pm/owner_ui us.gcr.io/project-id/owner_ui
+# then push
+gcloud docker -- push us.gcr.io/project-id/owner_ui
+
+
+#create a cluster on google cloud
+gcloud container clusters create pricingmanager --num-nodes 1 --machine-type=n1-highmem-2
+
+#create a pod regarding to a .yaml file
+kubectl create -f mongodb.yaml
+
+#create a service when the pod is up
+kubectl create -f mongodb-service.yaml
+
+#delete the service
+kubectl delete -f mongodb-service.yaml
+
+#delete the pod
+kubectl delete -f mongodb.yaml
+
+#delete the cluster
+gcloud container clusters delete pricingmanager

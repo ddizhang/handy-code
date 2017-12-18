@@ -107,7 +107,6 @@ ENV/
 
 
 *.lnk
-*.txt
 *.zip
 *.json
 *.html

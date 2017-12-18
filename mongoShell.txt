@@ -1,0 +1,24 @@
+#mongo shell
+
+#run a mongo container and open up a mongo shell on Docker
+docker run -it -p 28000:27017 --name mongoContainer mongo:latest mongo
+docker run -it --entrypoint /bin/bash imageName
+
+#connect to database
+mongo server/database
+mongo mongodb://userName:passWord@server/database
+e.g. mongo 35.185.200.18:27017/pricing_manager
+
+
+show dbs  #when connected to the server itself but not just one database
+use dbName #change to that database
+db.getCollectionNames()  # get all collections in a db
+
+
+db.collectionName.distinct(‘var_name’)
+db.collectionName.remove({})
+db.collectionName.createIndex({timestamp:-1, WH:1, CUC:1})
+
+
+#find one most recent record
+db.optimized_training_data.find({}).sort({$natural:-1}).limit(1)

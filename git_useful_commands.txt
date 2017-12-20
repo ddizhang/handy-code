@@ -2,6 +2,8 @@
 ## upstream
 
 git clone [repo address] #clone the upstream repo (master branch) into your local environment
+git remote add origin [upstream-address] #set upstream repo
+git push -u origin master #push local repo for the first time
 git push #push your local branch to upstream
 git push origin —delete [remote-branch-name] #delete a remote branch
 

@@ -1,0 +1,2 @@
+awk 'FNR>=2000002 && FNR <=3000001' oil_filter_daily.csv > oil_filter_daily_3.csv
+head 10 oil_filter_daily_1.csv

@@ -1,0 +1,58 @@
+
+## upstream
+
+git clone [repo address] #clone the upstream repo (master branch) into your local environment
+git remote add origin [upstream-address] #set upstream repo
+git config —get remote.origin.url #view remote url
+git remote show origin  #show origin information
+
+git push -u origin master #push local repo for the first time
+git push #push your local branch to upstream
+git push origin —delete [remote-branch-name] #delete a remote branch
+
+git fetch  #fetch a remote branch
+
+git pull origin [remote-branch-name] #this will fetch the upstream branch and merge it with current branch
+git pull  #fetch + merge, if upstream is already set
+git pull -s recursive -X ours  #pull upstream branch, when seeing conflicts, use the local version
+
+
+## branches
+
+git branch #see all branches
+git checkout [branchname] #switch to the branch
+git checkout -b [branchname] #create a new branch and switch to that branch
+
+git diff branchA..branchB  #compare two branches
+git diff branchA..branchB `ls -p | grep -v /` compare only current folder, non-recursively
+
+git merge branch #merge your current branch with this branch
+
+git stash #save uncommitted changes so that you can switch to another branch
+git stash apply  # apply the stashed changes to current branch
+
+git branch —d/-D [branchname] #delete a local branch
+
+
+## commit files
+
+git add -A #tracking the change of all tracked files
+git add [path/to/file/filename]
+git status #see what you have already added
+
+git commit #make a commit
+git diff #difference compared with last commit
+
+git log #see all commit in the branch so far
+git log —graph —online —decorate —all #see all commits and commit path in a nice way
+
+git reset —-hard [commitname] #reset head to the specified commit. This will discard everything after that commit
+git reset —-hard HEAD # this can be used in a merging mode to abort the merge
+
+
+
+
+
+## others
+
+git config —global user.email ‘amoydizhang@gmail.com’

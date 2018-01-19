@@ -1,0 +1,30 @@
+msSql:
+isnull(field, replace_value)
+mySql:
+isnull(field)
+ifnull(field, replace_value)
+sparkSql:
+ifnull(a, b) if a and b are not of the same type, will give ('EOF in multi-line string', (1, 0)) error
+
+
+
+msSql:
+DATEADD(DAY, -180, ‘2015-1-1’)
+mySql:
+DATE_ADD(‘2015-1-1’, INTERVAL 10 DAY)
+Spark sql:
+DATE_ADD(‘2015-01-01’, 10)  #only deal with days
+#!!don’t use ‘2015-1-1’ sometimes it’s problematic!!
+
+
+msSql:
+convert(date, quotedOn)
+mySql:
+cast(QuotedOn as date)
+
+
+
+msSql:
+convert(money, JOBBER) 
+mySql:
+CAST(JOBBER as DECIMAL(10,4)) 

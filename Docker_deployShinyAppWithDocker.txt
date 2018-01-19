@@ -1,0 +1,84 @@
+#Deploying an shiny app using docker and google cloud
+
+
+#————————————————————
+1. Build an image of your app using docker file
+
+###Your File structure: 
+YourApp/
+YourApp/AppFiles/
+YourApp/Dockerfile
+
+
+###A sample docker file:
+
+#———————————————————————————————
+FROM rocker/shiny:latest
+
+MAINTAINER name <email>
+
+# Install reqs for mongolite
+RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y libssl-dev libsasl2-dev
+
+# Install required R packages
+RUN R -e "install.packages(c('shinydashboard', 'shiny', 'ggplot2', 'dygraphs', 'ggrepel', 'scales', 'gridExtra', 'mongolite', 'jsonlite', 'DT', 'data.table', 'dplyr', 'tidyr', 'GetoptLong'), repos='https://cran.rstudio.com/')"
+RUN R -e "install.packages(c('purrr', 'plotly'))"
+RUN R -e "install.packages('RCurl')"
+
+# Copy application code and data files
+ADD AdminUI/ /srv/shiny-server/
+
+# Expose port
+EXPOSE 3838
+
+CMD ["/usr/bin/shiny-server.sh"]
+#———————————————————————————————
+
+###Build the docker image locally
+
+# Build the image
+$ docker build -t pm/ownerui ~/Projects/BusinessAnalytics/PricingProject/Docker/OwnerUI_image/
+
+docker build -t pm/adminui . --no-cache   #don’t use cache in building
+
+# Run the image
+$ docker run --rm -p 3838:3838 pm/ownerui
+
+$ docker run --rm -p 3838:3838 -v /Users/ddizhang/Desktop/work/shiny_log:/var/log/shiny-server/ pm/adminui  
+#mounting the log folder in container to a host folder, so that we can see the logs
+
+
+
+#———————————————————————
+###Some docker commands 
+
+docker build -t name path   #build image
+
+docker run username/imagename  #this will run the docker image if it’s available locally. If not, then docker will download the latest version.
+
+docker run -p port imageName   #create container
+docker run -p 27017:27017 --name mongo_instance_001 -d pm/mongotest
+
+docker run -it -p 28000:27017 --name mongoContainer mongo:latest mongo
+
+docker run -p 8088:8088 -d amancevice/superset   #start superset
+docker exec -it superset superset-init #init superset
+
+
+docker run -it imageName /bin/bash
+docker run -it --entrypoint /bin/bash imageName
+#this will open a bash to the container
+
+
+docker images
+docker ps -a
+
+docker stop containername #stop container
+docker rm  #remove container
+docker rmi  #remove image
+
+docker stop
+docker rm $(docker ps -a -q -f status=exited)
+#———————————————————————

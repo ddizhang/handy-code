@@ -1,6 +1,6 @@
 #add a subdirectory of a git repo into another git repo, 
 #so that you can have different version control on both parent repo and sub repo. 
-#And you can commute with others on the sub repo without exposing your parent repo
+#And you can share with others on the sub repo without exposing your parent repo
 
 git clone <parentRepoPath> parentRepo
 cd parentRepo
@@ -17,4 +17,28 @@ If in parentRepo and outside subRepo, commits will be made to parentRepo.
 if pushed from subRepo, only subRepo (and commits from subRepo) will be pushed.
 if pushed from parentRepo, only parentRepo (and commits from parentRepo) will be pushed.
 
+
+
+
+
+
+#—————————————
+
+git log —-oneline —decorate —graph —all
+
+git branch —-merge
+git branch —-no-merge
+
+
+## delete branches in Git
+git branch -d MyLocalBranch
+git push origin —delete MyUpstreanBranch
+
+
+
+
+
+## A and B collaborating in one Topic
+
+git fetch 
 

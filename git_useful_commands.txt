@@ -49,3 +49,10 @@ git log —graph —online —decorate —all #see all commits and commit path i
 git reset —-hard [commitname] #reset head to the specified commit. This will discard everything after that commit
 git reset —-hard HEAD # this can be used in a merging mode to abort the merge
 
+
+
+
+
+## others
+
+git config —global user.email ‘amoydizhang@gmail.com’

@@ -142,8 +142,12 @@ ENV/
 
 
 # Folders
-saved_output/
-data/
+saved_output/** #ignore everything within this folder
+data/  # ignore the folder itself
 Di/
 testlog/
 data_feed/
+
+
+# still want to track some files?
+!saved_output/filename.txt #works only when ignoring dir/** above. if ignore dir/, then whole dir is ignored

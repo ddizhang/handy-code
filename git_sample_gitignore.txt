@@ -144,9 +144,6 @@ ENV/
 # Folders
 saved_output/** #ignore everything within this folder
 data/  # ignore the folder itself
-Di/
-testlog/
-data_feed/
 
 
 # still want to track some files?

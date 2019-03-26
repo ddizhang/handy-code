@@ -38,6 +38,7 @@ git branch —d/-D [branchname] #delete a local branch
 
 git add -A #tracking the change of all tracked files
 git add [path/to/file/filename]
+git add $(git diff --name-only --cached)  # update only the added files
 git status #see what you have already added
 
 git commit #make a commit

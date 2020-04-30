@@ -250,3 +250,25 @@ where
 
 
 
+
+--------------------------------------------------------------------------------------------
+# left join executes earlier than where
+# 'left' has higher priority than condition in 'on', 
+# so if a 'on' condition filters on left table, the row will still be there but with all left table columns as NULL
+
+# this returns 1500 rows (all rows in dim_city)
+select *
+from dwh.dim_city c1
+left join dwh.dim_city  c2
+    on c1.city_id = c2.city_id
+    and c1.country_id = 1
+
+# this returns 300 rows
+select *
+from dwh.dim_city c1
+left join dwh.dim_city  c2
+    on c1.city_id = c2.city_id
+where c1.country_id = 1
+
+
+

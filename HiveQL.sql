@@ -278,6 +278,9 @@ set hive.auto.convert.join.noconditionaltask.size = 50000000;
 
 
 
+----------------------------------------
+-- hashing function
+hash(column) -- will hash the column into a number
 
 
 
